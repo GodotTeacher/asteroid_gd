@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://4g877crtsm4i"]
+[gd_scene load_steps=16 format=3 uid="uid://4g877crtsm4i"]
 
 [ext_resource type="Texture2D" uid="uid://cj4kek16m53ky" path="res://Assets/Actors/Player/ship.png" id="1_oaeb0"]
 [ext_resource type="Script" path="res://Scripts/Actors/Player/player.gd" id="1_ugfq0"]
+[ext_resource type="Texture2D" uid="uid://cna6sscvidchj" path="res://Assets/Vfx/ship_flame.png" id="3_sa6kf"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3r6kd"]
 atlas = ExtResource("1_oaeb0")
@@ -45,14 +46,70 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fj7rc"]
 size = Vector2(40, 36)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_sp73x"]
+atlas = ExtResource("3_sa6kf")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r3b2c"]
+atlas = ExtResource("3_sa6kf")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q5roi"]
+atlas = ExtResource("3_sa6kf")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d8qtr"]
+atlas = ExtResource("3_sa6kf")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qv3hy"]
+atlas = ExtResource("3_sa6kf")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s3wb5"]
+atlas = ExtResource("3_sa6kf")
+region = Rect2(32, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_x42ki"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sp73x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r3b2c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q5roi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d8qtr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qv3hy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s3wb5")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_ugfq0")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(2.5, 2.5)
 sprite_frames = SubResource("SpriteFrames_nsweg")
-animation = &"Fly_right"
+animation = &"Fly_forward"
 autoplay = "Fly_forward"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_fj7rc")
+
+[node name="Reactor" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, 26)
+sprite_frames = SubResource("SpriteFrames_x42ki")
+autoplay = "default"
+frame_progress = 0.805278
