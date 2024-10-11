@@ -98,6 +98,7 @@ animations = [{
 }]
 
 [node name="Player" type="CharacterBody2D"]
+collision_mask = 2
 script = ExtResource("1_ugfq0")
 Laser_scene = ExtResource("2_303vd")
 
@@ -114,7 +115,7 @@ shape = SubResource("RectangleShape2D_fj7rc")
 position = Vector2(0, 26)
 sprite_frames = SubResource("SpriteFrames_x42ki")
 autoplay = "default"
-frame_progress = 0.376751
+frame_progress = 0.681357
 
 [node name="MarkerLeft" type="Marker2D" parent="."]
 position = Vector2(-11, -10)

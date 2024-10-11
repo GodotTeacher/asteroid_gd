@@ -1,6 +1,28 @@
-[gd_scene load_steps=7 format=3 uid="uid://1yjviy5atgvo"]
+[gd_scene load_steps=14 format=3 uid="uid://1yjviy5atgvo"]
 
+[ext_resource type="Script" path="res://Scripts/Actors/Enemies/enemy.gd" id="1_cio7u"]
 [ext_resource type="Texture2D" uid="uid://b65gyibir6gqf" path="res://Assets/Actors/Enemies/green_enemy.png" id="1_hkjva"]
+[ext_resource type="Texture2D" uid="uid://dl45tnc6blkr2" path="res://Assets/Vfx/explosion.png" id="2_pxsgk"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_14tld"]
+atlas = ExtResource("2_pxsgk")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b3nso"]
+atlas = ExtResource("2_pxsgk")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vebxr"]
+atlas = ExtResource("2_pxsgk")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qt61i"]
+atlas = ExtResource("2_pxsgk")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v1op1"]
+atlas = ExtResource("2_pxsgk")
+region = Rect2(64, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ycwun"]
 atlas = ExtResource("1_hkjva")
@@ -16,6 +38,26 @@ region = Rect2(32, 0, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_toro8"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_14tld")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b3nso")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vebxr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qt61i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v1op1")
+}],
+"loop": false,
+"name": &"Explode",
+"speed": 10.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ycwun")
@@ -35,14 +77,17 @@ animations = [{
 size = Vector2(22, 22)
 
 [node name="GreenEnemy" type="CharacterBody2D"]
+collision_layer = 2
+script = ExtResource("1_cio7u")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_toro8")
+animation = &"Explode"
 autoplay = "default"
-frame = 1
-frame_progress = 0.999314
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_5blua")
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animation_finished"]
