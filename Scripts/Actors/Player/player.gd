@@ -10,6 +10,8 @@ class_name Player extends CharacterBody2D
 
 var direction:float = 0
 
+
+
 @warning_ignore("unused_parameter")
 func _input(event: InputEvent) -> void:
 	direction = Input.get_axis("move_left","move_right")
@@ -41,6 +43,8 @@ func _physics_process(delta: float) -> void:
 func spawn_lasers()->void:
 	var laserL = Laser_scene.instantiate()
 	var laserR = Laser_scene.instantiate()
+	print("Laser LP "+str(marker_left.position))
+	print("Laser GP "+str(marker_left.global_position))
 	
 	laserL.position = marker_left.position
 	laserR.position = marker_right.position
