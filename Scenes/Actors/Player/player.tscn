@@ -1,10 +1,12 @@
-[gd_scene load_steps=23 format=3 uid="uid://4g877crtsm4i"]
+[gd_scene load_steps=25 format=3 uid="uid://4g877crtsm4i"]
 
 [ext_resource type="Texture2D" uid="uid://cj4kek16m53ky" path="res://Assets/Actors/Player/ship.png" id="1_oaeb0"]
 [ext_resource type="Script" path="res://Scripts/Actors/Player/player.gd" id="1_ugfq0"]
 [ext_resource type="PackedScene" uid="uid://cmti2khjny4sy" path="res://Scenes/Actors/Player/laser.tscn" id="2_303vd"]
 [ext_resource type="Texture2D" uid="uid://dl45tnc6blkr2" path="res://Assets/Vfx/explosion.png" id="3_hk7e2"]
 [ext_resource type="Texture2D" uid="uid://cna6sscvidchj" path="res://Assets/Vfx/ship_flame.png" id="3_sa6kf"]
+[ext_resource type="AudioStream" uid="uid://ddl7g6hotxjr8" path="res://Assets/Sounds/laser_sound.wav" id="6_65gbc"]
+[ext_resource type="AudioStream" uid="uid://cvcar3yt05o4u" path="res://Assets/Sounds/explosion_sound.wav" id="7_x3swa"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1ocfb"]
 atlas = ExtResource("3_hk7e2")
@@ -146,7 +148,7 @@ Laser_scene = ExtResource("2_303vd")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(2.5, 2.5)
 sprite_frames = SubResource("SpriteFrames_nsweg")
-animation = &"Explode"
+animation = &"Fly_forward"
 autoplay = "Fly_forward"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -156,7 +158,7 @@ shape = SubResource("RectangleShape2D_fj7rc")
 position = Vector2(0, 26)
 sprite_frames = SubResource("SpriteFrames_x42ki")
 autoplay = "default"
-frame_progress = 0.522398
+frame_progress = 0.036513
 
 [node name="MarkerLeft" type="Marker2D" parent="."]
 position = Vector2(-11, -10)
@@ -167,6 +169,14 @@ position = Vector2(11, -10)
 [node name="ShootTimer" type="Timer" parent="."]
 wait_time = 0.4
 one_shot = true
+
+[node name="ShootSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_65gbc")
+volume_db = -1.529
+
+[node name="ExplodeSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_x3swa")
+volume_db = -1.529
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_animation_finished"]
 [connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]

@@ -3,6 +3,9 @@ class_name Player extends CharacterBody2D
 @onready var marker_left: Marker2D = $MarkerLeft
 @onready var marker_right: Marker2D = $MarkerRight
 @onready var shoot_timer: Timer = $ShootTimer
+@onready var shoot_sound: AudioStreamPlayer2D = $ShootSound
+@onready var explode_sound: AudioStreamPlayer2D = $ExplodeSound
+
 
 
 #const SPEED:float = 130
@@ -49,12 +52,14 @@ func spawn_lasers()->void:
 
 	laserL.position = marker_left.global_position
 	laserR.position = marker_right.global_position
+	shoot_sound.play()
 	get_parent().add_child(laserL)
 	get_parent().add_child(laserR)
 
 func hurt()-> void:
 	set_physics_process(false)
 	animated_sprite.play("Explode")
+	explode_sound.play()
 
 func _on_shoot_timer_timeout() -> void:
 	can_shoot = true

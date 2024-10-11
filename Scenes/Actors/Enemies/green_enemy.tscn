@@ -1,8 +1,9 @@
-[gd_scene load_steps=15 format=3 uid="uid://1yjviy5atgvo"]
+[gd_scene load_steps=16 format=3 uid="uid://1yjviy5atgvo"]
 
 [ext_resource type="Script" path="res://Scripts/Actors/Enemies/enemy.gd" id="1_cio7u"]
 [ext_resource type="Texture2D" uid="uid://b65gyibir6gqf" path="res://Assets/Actors/Enemies/green_enemy.png" id="1_hkjva"]
 [ext_resource type="Texture2D" uid="uid://dl45tnc6blkr2" path="res://Assets/Vfx/explosion.png" id="2_pxsgk"]
+[ext_resource type="AudioStream" uid="uid://cvcar3yt05o4u" path="res://Assets/Sounds/explosion_sound.wav" id="4_8ll0r"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_14tld"]
 atlas = ExtResource("2_pxsgk")
@@ -100,6 +101,10 @@ collision_layer = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
 position = Vector2(0.5, -6.5)
 shape = SubResource("RectangleShape2D_v51uk")
+
+[node name="ExplodeSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_8ll0r")
+volume_db = -1.529
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animation_finished"]
 [connection signal="body_entered" from="HitBox" to="." method="_on_hit_box_body_entered"]
