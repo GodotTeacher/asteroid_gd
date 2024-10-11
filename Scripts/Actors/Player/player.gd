@@ -2,6 +2,7 @@ class_name Player extends CharacterBody2D
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var marker_left: Marker2D = $MarkerLeft
 @onready var marker_right: Marker2D = $MarkerRight
+@onready var shoot_timer: Timer = $ShootTimer
 
 
 #const SPEED:float = 130
@@ -9,7 +10,7 @@ class_name Player extends CharacterBody2D
 @export var Laser_scene:PackedScene;
 
 var direction:float = 0
-
+var can_shoot:bool = true
 
 
 @warning_ignore("unused_parameter")
@@ -24,8 +25,10 @@ func _input(event: InputEvent) -> void:
 		animated_sprite.play("Fly_forward")
 		
 	# pondre les lasers
-	if(Input.is_action_just_pressed("shoot")):
+	if(Input.is_action_just_pressed("shoot") and can_shoot == true):
 		spawn_lasers()
+		can_shoot = false
+		shoot_timer.start()
 
 @warning_ignore("unused_parameter")
 func _physics_process(delta: float) -> void:
@@ -50,3 +53,7 @@ func spawn_lasers()->void:
 	laserR.position = marker_right.global_position
 	get_parent().add_child(laserL)
 	get_parent().add_child(laserR)
+
+
+func _on_shoot_timer_timeout() -> void:
+	can_shoot = true

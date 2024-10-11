@@ -114,10 +114,15 @@ shape = SubResource("RectangleShape2D_fj7rc")
 position = Vector2(0, 26)
 sprite_frames = SubResource("SpriteFrames_x42ki")
 autoplay = "default"
-frame_progress = 0.626885
+frame_progress = 0.26915
 
 [node name="MarkerLeft" type="Marker2D" parent="."]
 position = Vector2(-11, -10)
 
 [node name="MarkerRight" type="Marker2D" parent="."]
 position = Vector2(11, -10)
+
+[node name="ShootTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]
