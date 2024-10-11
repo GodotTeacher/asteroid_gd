@@ -1,8 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://b5dy7mc1vq3cv"]
+[gd_scene load_steps=3 format=3 uid="uid://b5dy7mc1vq3cv"]
 
 [ext_resource type="PackedScene" uid="uid://4g877crtsm4i" path="res://Scenes/Actors/Player/player.tscn" id="1_48d15"]
+[ext_resource type="PackedScene" uid="uid://1yjviy5atgvo" path="res://Scenes/Actors/Enemies/green_enemy.tscn" id="2_1c4ri"]
 
 [node name="Level" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_48d15")]
 position = Vector2(128, 340)
+
+[node name="GreenEnemy" parent="." instance=ExtResource("2_1c4ri")]
+position = Vector2(127, 292)
