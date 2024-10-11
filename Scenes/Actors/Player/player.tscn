@@ -114,7 +114,7 @@ shape = SubResource("RectangleShape2D_fj7rc")
 position = Vector2(0, 26)
 sprite_frames = SubResource("SpriteFrames_x42ki")
 autoplay = "default"
-frame_progress = 0.179989
+frame_progress = 0.832964
 
 [node name="MarkerLeft" type="Marker2D" parent="."]
 position = Vector2(-11, -10)

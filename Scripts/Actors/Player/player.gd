@@ -44,5 +44,5 @@ func spawn_lasers()->void:
 	
 	laserL.position = marker_left.position
 	laserR.position = marker_right.position
-	add_child(laserL)
-	add_child(laserR)
+	get_parent().add_child(laserL)
+	get_parent().add_child(laserR)
