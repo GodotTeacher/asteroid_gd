@@ -3,6 +3,10 @@
 [ext_resource type="Texture2D" uid="uid://cj4kek16m53ky" path="res://Assets/Actors/Player/ship.png" id="1_oaeb0"]
 [ext_resource type="Script" path="res://Scripts/Actors/Player/player.gd" id="1_ugfq0"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_3r6kd"]
+atlas = ExtResource("1_oaeb0")
+region = Rect2(16, 0, 16, 16)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_vcpgn"]
 atlas = ExtResource("1_oaeb0")
 region = Rect2(0, 0, 16, 16)
@@ -11,12 +15,16 @@ region = Rect2(0, 0, 16, 16)
 atlas = ExtResource("1_oaeb0")
 region = Rect2(32, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_3r6kd"]
-atlas = ExtResource("1_oaeb0")
-region = Rect2(16, 0, 16, 16)
-
 [sub_resource type="SpriteFrames" id="SpriteFrames_nsweg"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3r6kd")
+}],
+"loop": true,
+"name": &"Fly_forward",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_vcpgn")
@@ -32,14 +40,6 @@ animations = [{
 "loop": true,
 "name": &"Fly_right",
 "speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_3r6kd")
-}],
-"loop": true,
-"name": &"Fly_toward",
-"speed": 5.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fj7rc"]
@@ -51,8 +51,8 @@ script = ExtResource("1_ugfq0")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(2.5, 2.5)
 sprite_frames = SubResource("SpriteFrames_nsweg")
-animation = &"Fly_toward"
-autoplay = "Fly_toward"
+animation = &"Fly_right"
+autoplay = "Fly_forward"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_fj7rc")
