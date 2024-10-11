@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://b5dy7mc1vq3cv"]
+[gd_scene load_steps=6 format=3 uid="uid://b5dy7mc1vq3cv"]
 
 [ext_resource type="PackedScene" uid="uid://4g877crtsm4i" path="res://Scenes/Actors/Player/player.tscn" id="1_48d15"]
 [ext_resource type="PackedScene" uid="uid://1yjviy5atgvo" path="res://Scenes/Actors/Enemies/green_enemy.tscn" id="2_1c4ri"]
+[ext_resource type="Texture2D" uid="uid://cc6mwwj1mwyld" path="res://Assets/Bg/space.png" id="3_nipu6"]
+[ext_resource type="Texture2D" uid="uid://cww2hvdwydoir" path="res://Assets/Bg/far_stars.png" id="4_pupkh"]
+[ext_resource type="Texture2D" uid="uid://dbj0y5jhp6oib" path="res://Assets/Bg/close_stars.png" id="5_7fmgm"]
 
 [node name="Level" type="Node2D"]
 
@@ -10,3 +13,50 @@ position = Vector2(128, 340)
 
 [node name="GreenEnemy" parent="." instance=ExtResource("2_1c4ri")]
 position = Vector2(127, 16)
+
+[node name="Bg" type="Node2D" parent="."]
+
+[node name="Parallax2D" type="Parallax2D" parent="Bg"]
+z_index = -1
+scroll_scale = Vector2(0.4, 0.4)
+repeat_size = Vector2(128, 128)
+autoscroll = Vector2(0, 3)
+
+[node name="Sprite2D" type="Sprite2D" parent="Bg/Parallax2D"]
+texture = ExtResource("3_nipu6")
+centered = false
+
+[node name="Sprite2D2" type="Sprite2D" parent="Bg/Parallax2D"]
+position = Vector2(0, 256)
+texture = ExtResource("3_nipu6")
+centered = false
+
+[node name="Parallax2D2" type="Parallax2D" parent="Bg"]
+z_index = -1
+scroll_scale = Vector2(0.6, 0.6)
+repeat_size = Vector2(128, 128)
+autoscroll = Vector2(0, 6)
+
+[node name="Sprite2D" type="Sprite2D" parent="Bg/Parallax2D2"]
+texture = ExtResource("4_pupkh")
+centered = false
+
+[node name="Sprite2D2" type="Sprite2D" parent="Bg/Parallax2D2"]
+position = Vector2(0, 256)
+texture = ExtResource("4_pupkh")
+centered = false
+
+[node name="Parallax2D3" type="Parallax2D" parent="Bg"]
+z_index = -1
+scroll_scale = Vector2(0.9, 0.9)
+repeat_size = Vector2(128, 128)
+autoscroll = Vector2(0, 12)
+
+[node name="Sprite2D" type="Sprite2D" parent="Bg/Parallax2D3"]
+texture = ExtResource("5_7fmgm")
+centered = false
+
+[node name="Sprite2D2" type="Sprite2D" parent="Bg/Parallax2D3"]
+position = Vector2(0, 256)
+texture = ExtResource("5_7fmgm")
+centered = false
