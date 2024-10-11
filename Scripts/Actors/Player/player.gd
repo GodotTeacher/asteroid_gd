@@ -46,7 +46,7 @@ func spawn_lasers()->void:
 	print("Laser LP "+str(marker_left.position))
 	print("Laser GP "+str(marker_left.global_position))
 	
-	laserL.position = marker_left.position
-	laserR.position = marker_right.position
+	laserL.position = marker_left.global_position
+	laserR.position = marker_right.global_position
 	get_parent().add_child(laserL)
 	get_parent().add_child(laserR)
