@@ -46,9 +46,7 @@ func _physics_process(delta: float) -> void:
 func spawn_lasers()->void:
 	var laserL = Laser_scene.instantiate()
 	var laserR = Laser_scene.instantiate()
-	print("Laser LP "+str(marker_left.position))
-	print("Laser GP "+str(marker_left.global_position))
-	
+
 	laserL.position = marker_left.global_position
 	laserR.position = marker_right.global_position
 	get_parent().add_child(laserL)
