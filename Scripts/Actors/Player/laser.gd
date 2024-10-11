@@ -11,6 +11,7 @@ func _on_laser_screen_exited() -> void:
 
 func _on_body_entered(body: Node2D) -> void:
 	(body as Enemy).detroy_enemy()
+	queue_free()
 
 
 	
