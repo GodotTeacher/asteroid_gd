@@ -1,9 +1,30 @@
-[gd_scene load_steps=17 format=3 uid="uid://4g877crtsm4i"]
+[gd_scene load_steps=23 format=3 uid="uid://4g877crtsm4i"]
 
 [ext_resource type="Texture2D" uid="uid://cj4kek16m53ky" path="res://Assets/Actors/Player/ship.png" id="1_oaeb0"]
 [ext_resource type="Script" path="res://Scripts/Actors/Player/player.gd" id="1_ugfq0"]
 [ext_resource type="PackedScene" uid="uid://cmti2khjny4sy" path="res://Scenes/Actors/Player/laser.tscn" id="2_303vd"]
+[ext_resource type="Texture2D" uid="uid://dl45tnc6blkr2" path="res://Assets/Vfx/explosion.png" id="3_hk7e2"]
 [ext_resource type="Texture2D" uid="uid://cna6sscvidchj" path="res://Assets/Vfx/ship_flame.png" id="3_sa6kf"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1ocfb"]
+atlas = ExtResource("3_hk7e2")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0c0xt"]
+atlas = ExtResource("3_hk7e2")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8r1i6"]
+atlas = ExtResource("3_hk7e2")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_agb4x"]
+atlas = ExtResource("3_hk7e2")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1cmce"]
+atlas = ExtResource("3_hk7e2")
+region = Rect2(64, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3r6kd"]
 atlas = ExtResource("1_oaeb0")
@@ -19,6 +40,26 @@ region = Rect2(32, 0, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_nsweg"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1ocfb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0c0xt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8r1i6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_agb4x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1cmce")
+}],
+"loop": false,
+"name": &"Explode",
+"speed": 10.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_3r6kd")
@@ -105,7 +146,7 @@ Laser_scene = ExtResource("2_303vd")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(2.5, 2.5)
 sprite_frames = SubResource("SpriteFrames_nsweg")
-animation = &"Fly_forward"
+animation = &"Explode"
 autoplay = "Fly_forward"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -115,7 +156,7 @@ shape = SubResource("RectangleShape2D_fj7rc")
 position = Vector2(0, 26)
 sprite_frames = SubResource("SpriteFrames_x42ki")
 autoplay = "default"
-frame_progress = 0.681357
+frame_progress = 0.522398
 
 [node name="MarkerLeft" type="Marker2D" parent="."]
 position = Vector2(-11, -10)
@@ -127,4 +168,5 @@ position = Vector2(11, -10)
 wait_time = 0.4
 one_shot = true
 
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_animation_finished"]
 [connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]

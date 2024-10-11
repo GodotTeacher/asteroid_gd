@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://1yjviy5atgvo"]
+[gd_scene load_steps=15 format=3 uid="uid://1yjviy5atgvo"]
 
 [ext_resource type="Script" path="res://Scripts/Actors/Enemies/enemy.gd" id="1_cio7u"]
 [ext_resource type="Texture2D" uid="uid://b65gyibir6gqf" path="res://Assets/Actors/Enemies/green_enemy.png" id="1_hkjva"]
@@ -76,6 +76,9 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5blua"]
 size = Vector2(22, 22)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v51uk"]
+size = Vector2(27, 1)
+
 [node name="GreenEnemy" type="CharacterBody2D"]
 collision_layer = 2
 script = ExtResource("1_cio7u")
@@ -90,4 +93,13 @@ autoplay = "default"
 position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_5blua")
 
+[node name="HitBox" type="Area2D" parent="."]
+position = Vector2(0, 20)
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+position = Vector2(0.5, -6.5)
+shape = SubResource("RectangleShape2D_v51uk")
+
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animation_finished"]
+[connection signal="body_entered" from="HitBox" to="." method="_on_hit_box_body_entered"]

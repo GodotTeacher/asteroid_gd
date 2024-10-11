@@ -12,3 +12,8 @@ func detroy_enemy()-> void:
 
 func _on_animation_finished() -> void:
 	queue_free()
+
+
+func _on_hit_box_body_entered(body: Node2D) -> void:
+	(body as Player).hurt()
+	detroy_enemy()

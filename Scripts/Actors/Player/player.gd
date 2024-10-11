@@ -52,6 +52,13 @@ func spawn_lasers()->void:
 	get_parent().add_child(laserL)
 	get_parent().add_child(laserR)
 
+func hurt()-> void:
+	set_physics_process(false)
+	animated_sprite.play("Explode")
 
 func _on_shoot_timer_timeout() -> void:
 	can_shoot = true
+
+
+func _on_animated_animation_finished() -> void:
+	queue_free()
