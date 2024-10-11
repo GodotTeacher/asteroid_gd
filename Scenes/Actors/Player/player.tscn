@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://4g877crtsm4i"]
+[gd_scene load_steps=8 format=3 uid="uid://4g877crtsm4i"]
 
 [ext_resource type="Texture2D" uid="uid://cj4kek16m53ky" path="res://Assets/Actors/Player/ship.png" id="1_oaeb0"]
+[ext_resource type="Script" path="res://Scripts/Actors/Player/player.gd" id="1_ugfq0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vcpgn"]
 atlas = ExtResource("1_oaeb0")
@@ -45,6 +46,7 @@ animations = [{
 size = Vector2(40, 36)
 
 [node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_ugfq0")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(2.5, 2.5)
