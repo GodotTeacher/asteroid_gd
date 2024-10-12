@@ -4,6 +4,8 @@ class_name Enemy extends CharacterBody2D
 
 @export var Speed:float = 80
 
+signal on_enemy_destroyed(enemy : Enemy)
+
 func _physics_process(delta: float) -> void:
 	velocity.y = Speed;
 	move_and_slide()
@@ -11,6 +13,8 @@ func _physics_process(delta: float) -> void:
 func detroy_enemy()-> void:
 	explode_sound.play()
 	animated_sprite.play("Explode")
+	# signal que je suis detruit
+	on_enemy_destroyed.emit(self)
 
 func _on_animation_finished() -> void:
 	queue_free()
