@@ -11,7 +11,7 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func detroy_enemy()-> void:
-	explode_sound.play()
+	#explode_sound.play()
 	animated_sprite.play("Explode")
 	# signal que je suis detruit
 	on_enemy_destroyed.emit(self)

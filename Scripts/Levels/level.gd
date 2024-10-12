@@ -1,8 +1,11 @@
 extends Node2D
 @export var Enemy_scenes:Array[PackedScene]
-
+@export var Player:Player
+@export var Spawn_timer:Timer
 var score : int = 0
 
+func _ready() -> void:
+	Player.On_player_died.connect(_on_player_died)
 
 func _on_spawn_timer_timeout() -> void:	
 	var screen_width:float = get_viewport_rect().size.x
@@ -16,3 +19,7 @@ func _on_spawn_timer_timeout() -> void:
 func _on_enemy_destroyed(enemy : Enemy)-> void:
 	score += 1
 	print("New score "+str(score))	
+	
+func _on_player_died(player: Player):
+	Spawn_timer.stop()
+	print("Player died")

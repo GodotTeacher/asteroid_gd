@@ -12,6 +12,8 @@ class_name Player extends CharacterBody2D
 @export var Speed:float = 130;
 @export var Laser_scene:PackedScene;
 
+signal On_player_died(player: Player)
+
 var direction:float = 0
 var can_shoot:bool = true
 
@@ -52,14 +54,15 @@ func spawn_lasers()->void:
 
 	laserL.position = marker_left.global_position
 	laserR.position = marker_right.global_position
-	shoot_sound.play()
+	#shoot_sound.play()
 	get_parent().add_child(laserL)
 	get_parent().add_child(laserR)
 
 func hurt()-> void:
 	set_physics_process(false)
 	animated_sprite.play("Explode")
-	explode_sound.play()
+	#explode_sound.play()
+	On_player_died.emit(self)
 
 func _on_shoot_timer_timeout() -> void:
 	can_shoot = true
