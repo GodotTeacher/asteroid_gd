@@ -69,4 +69,6 @@ centered = false
 wait_time = 2.0
 autostart = true
 
+[node name="EnemiesContainer" type="Node2D" parent="."]
+
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
