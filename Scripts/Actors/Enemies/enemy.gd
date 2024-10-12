@@ -19,3 +19,7 @@ func _on_animation_finished() -> void:
 func _on_hit_box_body_entered(body: Node2D) -> void:
 	(body as Player).hurt()
 	detroy_enemy()
+
+
+func _on_visible_on_screen_exited() -> void:
+	queue_free()

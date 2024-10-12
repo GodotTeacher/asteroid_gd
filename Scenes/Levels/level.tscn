@@ -1,18 +1,20 @@
-[gd_scene load_steps=6 format=3 uid="uid://b5dy7mc1vq3cv"]
+[gd_scene load_steps=9 format=3 uid="uid://b5dy7mc1vq3cv"]
 
 [ext_resource type="PackedScene" uid="uid://4g877crtsm4i" path="res://Scenes/Actors/Player/player.tscn" id="1_48d15"]
+[ext_resource type="Script" path="res://Scripts/Levels/level.gd" id="1_mr1ak"]
 [ext_resource type="PackedScene" uid="uid://1yjviy5atgvo" path="res://Scenes/Actors/Enemies/green_enemy.tscn" id="2_1c4ri"]
 [ext_resource type="Texture2D" uid="uid://cc6mwwj1mwyld" path="res://Assets/Bg/space.png" id="3_nipu6"]
 [ext_resource type="Texture2D" uid="uid://cww2hvdwydoir" path="res://Assets/Bg/far_stars.png" id="4_pupkh"]
+[ext_resource type="PackedScene" uid="uid://dtmuhf2td87ug" path="res://Scenes/Actors/Enemies/pink_enemy.tscn" id="5_4uks6"]
 [ext_resource type="Texture2D" uid="uid://dbj0y5jhp6oib" path="res://Assets/Bg/close_stars.png" id="5_7fmgm"]
+[ext_resource type="PackedScene" uid="uid://njdoet067m3n" path="res://Scenes/Actors/Enemies/yellow_enemy.tscn" id="5_nyg2w"]
 
 [node name="Level" type="Node2D"]
+script = ExtResource("1_mr1ak")
+Enemy_scenes = Array[PackedScene]([ExtResource("2_1c4ri"), ExtResource("5_4uks6"), ExtResource("5_nyg2w")])
 
 [node name="Player" parent="." instance=ExtResource("1_48d15")]
 position = Vector2(128, 340)
-
-[node name="GreenEnemy" parent="." instance=ExtResource("2_1c4ri")]
-position = Vector2(127, 16)
 
 [node name="Bg" type="Node2D" parent="."]
 
@@ -60,3 +62,9 @@ centered = false
 position = Vector2(0, 256)
 texture = ExtResource("5_7fmgm")
 centered = false
+
+[node name="SpawnTimer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]

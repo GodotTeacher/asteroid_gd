@@ -1,8 +1,8 @@
-[gd_scene load_steps=16 format=3 uid="uid://1yjviy5atgvo"]
+[gd_scene load_steps=15 format=3 uid="uid://njdoet067m3n"]
 
 [ext_resource type="Script" path="res://Scripts/Actors/Enemies/enemy.gd" id="1_cio7u"]
-[ext_resource type="Texture2D" uid="uid://b65gyibir6gqf" path="res://Assets/Actors/Enemies/green_enemy.png" id="1_hkjva"]
 [ext_resource type="Texture2D" uid="uid://dl45tnc6blkr2" path="res://Assets/Vfx/explosion.png" id="2_pxsgk"]
+[ext_resource type="Texture2D" uid="uid://dgv1x2pavlmhc" path="res://Assets/Actors/Enemies/yellow_enemy.png" id="3_lyuto"]
 [ext_resource type="AudioStream" uid="uid://cvcar3yt05o4u" path="res://Assets/Sounds/explosion_sound.wav" id="4_8ll0r"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_14tld"]
@@ -25,17 +25,13 @@ region = Rect2(48, 0, 16, 16)
 atlas = ExtResource("2_pxsgk")
 region = Rect2(64, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ycwun"]
-atlas = ExtResource("1_hkjva")
+[sub_resource type="AtlasTexture" id="AtlasTexture_y1de2"]
+atlas = ExtResource("3_lyuto")
 region = Rect2(0, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_xgjod"]
-atlas = ExtResource("1_hkjva")
+[sub_resource type="AtlasTexture" id="AtlasTexture_jdprd"]
+atlas = ExtResource("3_lyuto")
 region = Rect2(16, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_24eqx"]
-atlas = ExtResource("1_hkjva")
-region = Rect2(32, 0, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_toro8"]
 animations = [{
@@ -61,13 +57,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ycwun")
+"texture": SubResource("AtlasTexture_y1de2")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_xgjod")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_24eqx")
+"texture": SubResource("AtlasTexture_jdprd")
 }],
 "loop": true,
 "name": &"default",
@@ -80,7 +73,7 @@ size = Vector2(22, 22)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v51uk"]
 size = Vector2(27, 1)
 
-[node name="GreenEnemy" type="CharacterBody2D"]
+[node name="YellowEnemy" type="CharacterBody2D"]
 collision_layer = 2
 script = ExtResource("1_cio7u")
 
@@ -88,6 +81,7 @@ script = ExtResource("1_cio7u")
 scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_toro8")
 autoplay = "default"
+frame_progress = 0.66936
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1)
